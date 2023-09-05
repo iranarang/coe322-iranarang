@@ -11,7 +11,7 @@ int main() { //set up main
     int longest = 0; //initiate variables
  
     for(int i = 1; i<=1000; i++) { //set up for loop to go through all 1000 numbers
-        int length = 0; //initialize temporary length of sequence
+        int length = 1; //initialize temporary length of sequence
         num = i;
         int tempnum = i;
         

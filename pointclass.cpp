@@ -23,7 +23,13 @@ public:
   float distance_to_origin() {
     return sqrt( x*x + y*y );
   };
-};
+  float angle(){
+    return atan2(y,x);
+  };
+  float distance(Point q) {
+    float dx = x-q.x, dy = y-q.y;
+    return sqrt(dx*dx + dy*dy);  
+  };
 
 int main() {
   Point p1(1.0,1.0);

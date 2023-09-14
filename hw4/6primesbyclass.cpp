@@ -15,17 +15,15 @@ using std::cout;
 */
 bool isPrime(int num){
     
-    bool prime = true;
     if (num <= 1)       // negative numbers, 0, and 1 are never prime numbers
         return false;
     
     for(int i = 2; i <= num/2; i++){    // loop through all numbers num/2 since 2 is the smallest prime number
         if (num % i == 0){      // if num can be divided by i without a remainder it is not prime
-            prime = false;
-            break;
+            return false;
         }
     }
-    return prime;
+    return true;
 }
 
 class primegenerator{

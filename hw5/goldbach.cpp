@@ -1,13 +1,12 @@
 // Names: Christine Goh, Ira Narang, Rhea Samuel
 // UTEIDs: cxg96, in2933, rss3488
 // TACC Usernames: christinegoh, iranarang, rheasamuel12 
+// we need two generators, one to generate r values, and the other to generate p values
 
 #include <iostream>
 #include <vector>
 using std::cin;
 using std::cout;
-
-
 
 /**
  * Check if input number is prime.
@@ -27,29 +26,6 @@ bool isPrime(int num){
         }
     }
     return true;
-}
-
-/**
- * Find prime triples
- * 
- * Input: vector of all primes within the range
- * Prints p,q,r triples
- * 
-*/
-void findPrimes(std::vector<int> allPrimes) {
-    for (int r : allPrimes) {       // Loops through allPrimes vector
-        for(int p = 3; p < r; p++){     // Nested for loop that assigns a value p and looks for an equidistant prime q
-            if(isPrime(p)){
-                int q = 2 * r - p;      // Equation for finding q
-                if (q > p && isPrime(q)) {  
-                    std::cout << "p = " << p << ", q = " << q << ", r = " << r << std::endl;
-                    break;      // Break after finding the first p and q for r
-                }
-            }
-            
-        }
-        
-    }
 }
 
 class primegenerator{
@@ -84,23 +60,43 @@ class primegenerator{
         }
 };
 
+/**
+ * Find prime triples
+ * 
+ * Input: vector of all primes within the range
+ * Prints p,q,r triples
+ * 
+*/
+void find_equidistant_primes(std::vector<int> allPrimes) {
+    for (int r : allPrimes) {
+        primegenerator primes;        
+        int p = 2; // Initialize p to 2 since it is the first prime
+        while (p <= r) {
+            int q = 2 * r - p;
+            if (isPrime(q)) {
+                std::cout << "p = " << p << ", q = " << q << ", r = " << r << std::endl;
+                break; // only prints out one p,q,r pair for each r value
+            }
+            p = primes.nextprime();
+        }
+    }
+}
+
 int main(){
 
     int nprimes;
     cout << "Enter the number of primes: ";
     cin >> nprimes;     // input number of primes to be displayed
-    primegenerator sequence;
+    primegenerator generator;
     std::vector<int> allPrimes;
 
-    while (sequence.number_of_primes_found()<nprimes) {
-        int number = sequence.nextprime();
+    while (generator.number_of_primes_found() < nprimes+2) { // add two to inputted number to account for 2 and 3 having no equidistant primes
+        int number = generator.nextprime();
         if(number > 4)
             allPrimes.push_back(number);
-        else
-            cout<< "No equidistant primes from " << number << std::endl;    // 2 and 3 do not have equidistant primes
     }
     
-    findPrimes(allPrimes); 
+    find_equidistant_primes(allPrimes); 
 
 
 }

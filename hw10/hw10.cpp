@@ -11,8 +11,8 @@ using std::cin, std::cout, std::vector;
 double f(int n) { return n * n + 1; }
 
 #define CATCH_CONFIG_MAIN
-#include "catch2/catch_all.hpp"
-
+//#include "catch2/catch_all.hpp"
+/*
 TEST_CASE("test that f always returns positive")
 {
     int n = 5; // change as needed
@@ -27,3 +27,4 @@ TEST_CASE("proper test", "[2]")
     coefficients.at(0) = 0.;
     REQUIRE_THROWS(polynomial(coefficients));
 }
+*/

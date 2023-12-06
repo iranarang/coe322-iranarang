@@ -86,7 +86,7 @@ public:
             return true;
         }
     }
-    void reset_transmission_counter()
+    void reset_transmission_counter() //reset both global variables at the end of each run so they don't carry over into the next run
     {
         transmissions_counter = 0;
     }

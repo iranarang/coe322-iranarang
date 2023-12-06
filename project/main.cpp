@@ -138,11 +138,11 @@ void test_one_more_day_with_contacts_with_vary_prob()
 // Exercise 49.7
 void test_realistic_population(double probability, double vacc_rate)
 {
-    int population_count3 = 40000;
+    int population_count3 = 15000;
     Population population3(population_count3);
     Disease disease4(probability, 5);
-    population3.random_infection(disease4, 0.000025); // infect an initial set of people
-    population3.random_vaccination(vacc_rate);        // infect an initial set of people
+    population3.random_infection(disease4, 0.001); // infect an initial set of people
+    population3.random_vaccination(vacc_rate);        // vaccinate an initial set of people
 
     cout << "Simulation with Contagion Probability: " << probability
          << ", Vaccination Rate: " << vacc_rate << endl;
@@ -164,11 +164,10 @@ void test_realistic_population(double probability, double vacc_rate)
 void test_realistic_population_with_vary_prob()
 {
 
-    for (double vaccination_rate : {0.2, 0.4, 0.6})
+    for (double i=0; i <=1.0; i+=0.05)
     {
-        test_realistic_population(0.5, vaccination_rate);
+        test_realistic_population(0.5, i);
     }
-    cout << endl;
 }
 
 // Exercise 49.8 herd immunity
@@ -291,4 +290,5 @@ int main()
     cout << endl
          << "With varying probability: " << endl;
     herd_immunity_with_vary_prob();
+
 }
